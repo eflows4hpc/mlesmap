@@ -1,5 +1,5 @@
 '''
-STEP 7.2: SPLIT DATA BY SCENARIO AND MAGNITUDE
+STEP 8.1: SPLIT DATA BY SCENARIO AND MAGNITUDE
 In this step, once the database is prepared for Dislib, the data is divided between Train and Test.
 For this purpose, in the general database, the data with the same earthquake hypocentre coordinates are combined and the magnitude data are separated proportionally to the presence.
 One execution is needed for each PSA.
