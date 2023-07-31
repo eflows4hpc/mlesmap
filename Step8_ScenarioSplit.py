@@ -1,5 +1,5 @@
 '''
-STEP 7.3: SPLIT DATA BY SCENARIO
+STEP 8.3: SPLIT DATA BY SCENARIO
 In this step, once the database is prepared for Dislib, the data is divided between Train and Test.
 For this purpose, in the general database, the data with the same earthquake hypocentre coordinates are combined and its extracted the 5% of each scenario.
 '''
