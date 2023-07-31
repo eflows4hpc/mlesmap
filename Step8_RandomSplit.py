@@ -1,5 +1,5 @@
 '''
-STEP 7.1: SPLIT DATA BY RANDOM
+STEP 8.2: SPLIT DATA BY RANDOM
 In this step, once the database is prepared for Dislib, the data is divided between Train and Test.
 For this purpose, in the general database, 10% of the data is randomly extracted.
 One execution is needed for each PSA.
