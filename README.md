@@ -14,13 +14,14 @@ pip install -r requirements.txt
 
 ## Repository structure
 The repository is organized as follows
-- `Step1_Extraction.py`: the data extracted from CyberShake are processed. 
-- `Step2_SRFExtraction.py`: a database is generated in which the geographic coordinates of the synthetic station, the coordinates and depth of the hypocentre and the Euclidean distance and azimuth are displayed.
-- `Step3_Plot.py`: 
+- `Step1_Extraction.py`: the data extracted from CyberShake are processed. In this code the information is obtained from the folder post-processing of each Synthetic Station and from the file Ruptures. The output is a csv with the following information:  PGA, PGV, PSA, PSV and SD max and average, Mw, src, rv. For this step there are two different codes in the repository, one of them using PyCompss and the other one without using it.
+- `Step2_SRFExtraction.py`: In this step a database is generated in which the geographic coordinates of the synthetic station, the coordinates and depth of the hypocentre and the Euclidean distance and azimuth are displayed. From the file name we get the information related to the number of the synthesised station and the rupture, from the Sites file the information related to the coordinates of this station and from the srf files the information related to the earthquake. The azimuth and Euclidean distance are calculated separately.
+- `Step3_Plot.py`: Extract information to plot all the results together per magnitude also including the GMPEs
 - `Step4_Merge.py`: Join the databases obtained in the step 2 for each station into a general one for each PSA.
-- `Step5_Concat.py`: This script is in case the merge could not be done in once, so there is more than one PSA merge for each PSA.
-- `Step6_Dislib.py`: Data preparation for Dislib
-- `Step7_DropNaN.py`: Drop duplicate or empty rows.
-- `Step8a_SplitMagnitude.py`: The data is divided between Train and Test in proportion to the number of rows per magnitude in each scenario.
-- `Step8b_SplitRandom.py`: The data is divided between Train and Test randomly from the general database.
-- `Step8c_SplitScenario.py`: The data is split between Train and Test randomly from each scenario.
+- `Step5_Concat.py`: This step is complementary to step 4. This script is in case the merge could not be done in once, so there is more than one PSA merge for each PSA. 
+- `Step6_Dislib.py`: Data preparation for Dislib, in this step the database is filtered with only the necessary features and target. 
+- `Step7_DropNaN.py`: This step is not entirely necessary, it is just to ensure that there are no incomplete rows or no data.
+- `Step8a_SplitMagnitude.py`: In this step, once the database is prepared for Dislib, the data is divided between Train and Test.
+For this purpose, in the general database, the data with the same earthquake hypocentre coordinates are combined and the magnitude data are separated proportionally to the presence. 
+- `Step8b_SplitRandom.py`: In this step, once the database is prepared for Dislib, the data is divided between Train and Test. For this purpose, from the general database, 10% of the data is randomly extracted.
+- `Step8c_SplitScenario.py`: In this step, once the database is prepared for Dislib, the data is divided between Train and Test. For this purpose, from the general database, the data with the same earthquake hypocentre coordinates are combined and its extracted the 5% of each scenario.
