@@ -1,4 +1,4 @@
-# MLESmaps 
+# MLESmap 
 This repository contains the codes needed for run the workflow of the Machine Learning Estimator for Ground Shaking Maps (MLESmap).
 The MLESmap introduces an innovative approach that harnesses the predictive capabilities of Machine Learning (ML) algorithms, utilizing high-quality physics-based seismic scenarios.
 
