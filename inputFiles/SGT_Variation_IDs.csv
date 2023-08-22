@@ -1,0 +1,3 @@
+SGT_Variation_ID,SGT_Variation_Name,SGT_Variation_Description
+1,AWP_ODC_SGT,SGTs generated with AWP-ODC-SGT with Qp=Qs=10000
+2,AWP_ODC_SGT GPU,SGTs generated with AWP-ODC-SGT GPU
