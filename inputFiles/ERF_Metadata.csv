@@ -1,0 +1,8 @@
+ERF_ID,ERF_Attr_Name,ERF_Attr_Value,ERF_Attr_Type,ERF_Attr_Units
+100,Apply CyberShake DDW Corr,true,Boolean,
+100,Background Seismicity,Exclude,ConstrainedString,
+100,Duration,1,ConstrainedDouble,Years
+100,Floater Type,Along strike & centered down dip,ConstrainedString,
+100,Probability Model,Poisson,ConstrainedString,
+100,Rupture Offset,5,ConstrainedDouble,km
+100,Rupture Surface Resolution,0.2,Float,km
