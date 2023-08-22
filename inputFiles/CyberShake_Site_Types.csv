@@ -1,0 +1,8 @@
+CS_Site_Type_ID,CS_Site_Type_Name,CS_Site_Type_Short_Name
+1,Point of Interest,POI
+2,Precarious Rock,PREC
+3,Broadband Station,STAT
+4,Verification Test,TEST
+5,Gridded 20 KM,GRID20
+6,Gridded 10 KM,GRID10
+7,Gridded 05 KM,GRID05
