@@ -4,8 +4,8 @@ learning are retained, sorting them into necessary features and the target varia
 represent the target variable.
 It is advisable to transform the intensity values (PSA) into a base 10 logarithmic
 scale (log10). It has to be executed once for each intensity measure.
-Example of features and target: ource ID,Site Lat,Site Lon,Magnitude,Hypocenter Lat,Hypocenter Lon,Hypocenter Depth,
-# EuclideanDistance,Azimuth,Intensity Value
+Example of features and target: Source ID,Site Lat,Site Lon,Magnitude,Hypocenter Lat,Hypocenter Lon,Hypocenter Depth,
+EuclideanDistance,Azimuth,Intensity Value
 
 Author: Rut Blanco (Last modification: September 2023) """
 
