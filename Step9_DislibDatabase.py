@@ -16,7 +16,6 @@ dfDataSet0 = pd.read_csv("/path/to/Database.csv")
 
 # Generate features of the model
 dfFeatures = pd.DataFrame()
-dfFeatures["Source ID"] = dfDataSet0["Source ID"]
 dfFeatures["Site Lat"] = dfDataSet0["Site Lat"]
 dfFeatures["Site Lon"] = dfDataSet0["Site Lon"]
 dfFeatures["Magnitude"] = dfDataSet0["Magnitude"]
