@@ -1,14 +1,12 @@
-""" STEP 1: SYNTHETIC SEISMOGRAM'S EXTRACTION
-In this code the data extracted from CyberShake are processed.
+""" SYNTHETIC SEISMOGRAM'S EXTRACTION
 
+In this code the data extracted from CyberShake are processed.
 The code starts in the general folder where all the information is located, from here it walks through the folders
 until it reaches the level where the synthetic stations are located. Inside the folder of each synthetic station a
 folder called outputExtraction is created where the outputs obtained from the execution of this code are stored.
-
 Info in outputExtraction: PGA, PGV, PSA, PSV and SD max and average. Mw, src, rv
 
-Author: Rut Blanco Prieto (Last modification: September 2023)
-"""
+Author: Rut Blanco Prieto (Last modification: September 2023) """
 
 from rotinv_maxavg import *
 from read_seis_TEST import *

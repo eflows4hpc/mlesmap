@@ -1,13 +1,12 @@
-'''
-Step 1: SYNTHETIC SEISMOGRAMS EXTRACTION
+""" SYNTHETIC SEISMOGRAMS EXTRACTION
 
-In this code the data extracted from CyberShake are processed. 
-
-The code starts in the general folder where all the information is located, from here it walks through the folders until it reaches the level where the synthetic stations are located.
-Inside the folder of each synthetic station a folder called outputExtraction is created where the outputs obtained from the execution of this code are stored.
-
+In this code the data extracted from CyberShake are processed. The code starts in the general folder where all the
+information is located, from here it walks through the folders until it reaches the level where the synthetic
+stations are located. Inside the folder of each synthetic station a folder called outputExtraction is created where
+the outputs obtained from the execution of this code are stored.
 Info in outputExtraction: PGA, PGV, PSA, PSV and SD max and average. Mw, src, rv
-'''
+
+Author: Marisol Monterrubio (Last modification August 2023) """
 
 from rotinv_maxavg import *
 from read_seis_TEST import *
@@ -37,7 +36,7 @@ def step_1(path_to_folders,table_CS_Ruptures, output_folder):
       for (dirpath, dirnames, filenames) in walk(path_to_file):
         f_Stations.extend(dirnames)
         break
-      for i in f_Stations:  # Loop that goes trhough the stations 
+      for i in f_Stations:  # Loop that goes through the stations
         path_Stat = path_to_file+i+'/'
         folder_Out = path_Stat+output_folder
         try: 
@@ -63,7 +62,6 @@ def step_1(path_to_folders,table_CS_Ruptures, output_folder):
 @task(table_CS_Ruptures=FILE_IN,f_Seismograms=COLLECTION_FILE_IN)
 def seismogram_station_extraction(table_CS_Ruptures,f_Seismograms,folder_Out):
    for grm_file in f_Seismograms:
-      
       j = os.path.basename(grm_file)
       f1 = j.split("_")    
       src = f1[4] 
@@ -71,15 +69,14 @@ def seismogram_station_extraction(table_CS_Ruptures,f_Seismograms,folder_Out):
       f3 = f1[5].split(".")
       rup = f3[0]
       Mw = int(rup)*0.1    
-      g        = 0.01
-      damp     = 0.05  
+      g = 0.01
+      damp = 0.05
 
       nameOut = folder_Out+'/RotI_PGA_PSA_stat_'+stat+'_src_'+src+'_rup_'+rup+'.csv'      
       seismogram_data_extraction(table_CS_Ruptures,grm_file,nameOut,Mw,rup,src,stat,g,damp)
-      
 
 def seismogram_data_extraction(table_CS_Ruptures,grm_file,nameOut,Mw,rup,src,stat,g,damp):
-  periods  = np.asarray((1,2,3, 5, 7.5, 10)) 
+  periods  = np.asarray((1, 2, 3, 5, 7.5, 10))
   Tb_Ruptures     = pd.read_csv(table_CS_Ruptures)
   numb_ruptures = len(Tb_Ruptures.Source_ID)    
   seis = Seismogram(grm_file)
