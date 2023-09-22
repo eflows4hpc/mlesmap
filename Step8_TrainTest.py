@@ -38,7 +38,7 @@ for chunk in chunks:
     df = pd.merge(chunk_df, DataOut1, on=['Source ID', 'Rupture ID', 'Rupture Variation ID', 'Magnitude'], how='left')
     merged = chunk_df.merge(DataOut1, how='left', indicator=True)  # left,right,both
 
-    dfNotEQ = merged[merged['_merge'] == 'left_only']              # in the merge column, only those listed as left_only
+    dfNotEQ = merged[merged['_merge'] == 'left_only']  # in the merge column, only those listed as left_only
     dfNotEQ = dfNotEQ.drop('_merge', axis=1)
 
     TrainChunks.append(dfNotEQ)
