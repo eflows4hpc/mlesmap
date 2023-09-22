@@ -1,15 +1,16 @@
-'''
-STEP 2: SRF EXTRACTION WITH PYCOMPSS
-In this step a database is generated in which the geographic coordinates of the synthetic station, the coordinates and depth of the hypocentre and the Euclidean distance and azimuth are displayed.
-PyCompss has been used for this purpose.
-From the file name we get the information related to the number of the synthesised station and the rupture, 
-from the Sites file the information related to the coordinates of this station and from the srf files the 
+""" SRF DATABASE WITH PYCOMPSS
+
+In this step a database is generated in which the geographic coordinates of the synthetic station, the coordinates and
+depth of the hypocentre and the Euclidean distance and azimuth are displayed. PyCompss has been used for this purpose.
+From the file name we get the information related to the number of the synthesised station and the rupture,
+from the Sites file the information related to the coordinates of this station and from the srf files the
 information related to the earthquake. The azimuth and Euclidean distance are calculated separately.
 
-In @task the databases of all Sources_IDs are obtained in parallel, for a PSA of 3sec and 5sec.
+In @task the databases of all Sources_IDs are obtained in parallel, for the different periods.
 In def azimuth_3s and def azimuth_5s the azimuth, distance and plunge columns are obtained.
 In def psa_export_csv the csv for 3s and 5s are exported for each synthetic station.
-'''
+
+Authors: Marisol Monterrubio and Rut Blanco Prieto (Last modification September 2023) """
 
 import numpy as np
 import pandas as pd
