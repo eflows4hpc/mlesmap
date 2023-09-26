@@ -1,7 +1,6 @@
-'''
-STEP 3: PLOT
+""" STEP 3: PLOT
 Extract information to plot all the results together per magnitude also including the GMPEs
-'''
+Author: Marisol Monterrubio (Last modification March 2023) """
 
 import pandas as pd
 import numpy as np
