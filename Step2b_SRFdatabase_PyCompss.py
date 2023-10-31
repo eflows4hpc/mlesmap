@@ -10,7 +10,9 @@ In @task the databases of all Sources_IDs are obtained in parallel, for the diff
 In def azimuth_3s and def azimuth_5s the azimuth, distance and plunge columns are obtained.
 In def psa_export_csv the csv for 3s and 5s are exported for each synthetic station.
 
-Authors: Marisol Monterrubio and Rut Blanco Prieto (Last modification October 2023) """
+cmd: nohup pycompss run Step2b_SRFdatabase_PyCompss.py /path/to/folders/ folder_Out & out.out &
+
+Authors: Marisol Monterrubio Velasco and Rut Blanco Prieto (Last modification October 2023) """
 
 import numpy as np
 import pandas as pd
@@ -38,7 +40,7 @@ def psa_start(path_to_folders,output_folder):
         for (dirpath, dirnames,filenames) in walk(path_to_file):
             f_Stations.extend(dirnames)
             break
-        for i in f_Stations:     #Creation of a database for each synthetic station and for each PSA and creation of the folder out.
+        for i in f_Stations:   
             path_Stat = path_to_file+i+'/PSAoutputExtraction/'
             path_srf = path_to_file+i+'/PSA_srfExtraction/'
             if not os.path.exists(path_Stat):
