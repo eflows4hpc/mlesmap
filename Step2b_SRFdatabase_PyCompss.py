@@ -42,9 +42,9 @@ def psa_start(path_to_folders,output_folder):
             break
         for i in f_Stations:   
             path_Stat = path_to_file+i+'/PSAoutputExtraction/'
-            path_srf = path_to_file+i+'/PSA_srfExtraction/'
+            path_srf = path_to_file+i+'/PSAsrfExtraction/'
             if not os.path.exists(path_Stat):
-                print('NO HAY PSAoutputExtraction in :' + path_to_file+i)
+                print('There is not a PSAoutputExtraction folder in :' + path_to_file+i)
                 continue
 
             folder_Out = path_to_file + i + '/' + output_folder
@@ -55,7 +55,7 @@ def psa_start(path_to_folders,output_folder):
                 f_Files.extend(filenames)
                 break
             CyberS_sites_temp = (
-                    "/data/ScriptsPy_PyCOMPSs/inputData/CyberShake_Sites.csv"
+                    "/data/to/inputData/CyberShake_Sites.csv"
                 )
             f_stat = i.split("_")
             stat = f_stat[1]
@@ -271,7 +271,7 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
         PSA_10s.loc[p, 'Azimuth'] = azimuth
         PSA_10s.loc[p, 'Plunge'] = plunge
 
-    PSA_1s = PSA_1s.drop(PSA_5s.index[16632:]) #numero de eventos
+    PSA_1s = PSA_1s.drop(PSA_5s.index[16632:]) #number of events
     PSA_2s = PSA_2s.drop(PSA_5s.index[16632:])
     PSA_3s = PSA_3s.drop(PSA_5s.index[16632:])
     PSA_5s = PSA_5s.drop(PSA_5s.index[16632:])
