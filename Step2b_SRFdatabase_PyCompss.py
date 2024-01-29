@@ -178,9 +178,9 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
     SS_str = str(SS_csv)
 
-    PSA_1s['Eu_distance'] = 0
+    PSA_1s['Haversine_distance'] = 0
     PSA_1s['Azimuth'] = 0
-    PSA_1s['Plunge'] = 0
+    PSA_1s['Geodesic_distance'] = 0
     for r in range(len(PSA_1s)):
 
         x1,y1,z1 = PSA_1s['Hypocenter_Lat'].iloc[r], PSA_1s['Hypocenter_Lon'].iloc[r], PSA_1s['Hypocenter_Depth'].iloc[r]
@@ -190,15 +190,27 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
         distance = (geodesic(start, end).km)
         azimuth = (math.degrees(math.atan2((x2-x1),(y2-y1))))
-        plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
-
-        PSA_1s.loc[r, 'Eu_distance'] = distance
+        #plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        R = 6371
+        lat1 = math.radians(x1)
+        lon1 = math.radians(y1)
+        lat2 = math.radians(x2)
+        lon2 = math.radians(y2)
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        ddepth = z2 - z1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance_surface = R * c
+        distance1 = math.sqrt(distance_surface ** 2 + ddepth ** 2)
+        PSA_1s.loc[r, 'Haversine_distance'] = distance1
         PSA_1s.loc[r, 'Azimuth'] = azimuth
-        PSA_1s.loc[r, 'Plunge'] = plunge
+        PSA_1s.loc[r, 'Geodesic_distance'] = distance
 
-    PSA_2s['Eu_distance'] = 0
+
+    PSA_2s['Haversine_distance'] = 0
     PSA_2s['Azimuth'] = 0
-    PSA_2s['Plunge'] = 0
+    PSA_2s['Geodesic_distance'] = 0
     for w in range(len(PSA_2s)):
 
         x1,y1,z1 = PSA_2s['Hypocenter_Lat'].iloc[w], PSA_2s['Hypocenter_Lon'].iloc[w], PSA_2s['Hypocenter_Depth'].iloc[w]
@@ -208,16 +220,28 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
         distance = (geodesic(start, end).km)
         azimuth = (math.degrees(math.atan2((x2-x1),(y2-y1))))
-        plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        #plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        R = 6371
+        lat1 = math.radians(x1)
+        lon1 = math.radians(y1)
+        lat2 = math.radians(x2)
+        lon2 = math.radians(y2)
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        ddepth = z2 - z1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance_surface = R * c
+        distance1 = math.sqrt(distance_surface ** 2 + ddepth ** 2)
 
-        PSA_2s.loc[w, 'Eu_distance'] = distance
+        PSA_2s.loc[w, 'Haversine_distance'] = distance1
         PSA_2s.loc[w, 'Azimuth'] = azimuth
-        PSA_2s.loc[w, 'Plunge'] = plunge
+        PSA_2s.loc[w, 'Geodesic_distance'] = distance
 
 
-    PSA_3s['Eu_distance'] = 0
+    PSA_3s['Haversine_distance'] = 0
     PSA_3s['Azimuth'] = 0
-    PSA_3s['Plunge'] = 0
+    PSA_3s['Geodesic_distance'] = 0
     for n in range(len(PSA_3s)):
 
         x1,y1,z1 = PSA_3s['Hypocenter_Lat'].iloc[n], PSA_3s['Hypocenter_Lon'].iloc[n], PSA_3s['Hypocenter_Depth'].iloc[n]
@@ -227,16 +251,28 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
         distance = (geodesic(start, end).km)
         azimuth = (math.degrees(math.atan2((x2-x1),(y2-y1))))
-        plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        #plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        R = 6371
+        lat1 = math.radians(x1)
+        lon1 = math.radians(y1)
+        lat2 = math.radians(x2)
+        lon2 = math.radians(y2)
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        ddepth = z2 - z1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance_surface = R * c
+        distance1 = math.sqrt(distance_surface ** 2 + ddepth ** 2)
 
-        PSA_3s.loc[n, 'Eu_distance'] = distance
+        PSA_3s.loc[n, 'Haversine_distance'] = distance1
         PSA_3s.loc[n, 'Azimuth'] = azimuth
-        PSA_3s.loc[n, 'Plunge'] = plunge
+        PSA_3s.loc[n, 'Geodesic_distance'] = distance
 
 
-    PSA_5s['Eu_distance'] = 0
+    PSA_5s['Haversine_distance'] = 0
     PSA_5s['Azimuth'] = 0
-    PSA_5s['Plunge'] = 0
+    PSA_5s['Geodesic_distance'] = 0
     for o in range(len(PSA_5s)):
 
         x1,y1,z1 = PSA_5s['Hypocenter_Lat'].iloc[o], PSA_5s['Hypocenter_Lon'].iloc[o], PSA_5s['Hypocenter_Depth'].iloc[o]
@@ -246,16 +282,28 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
         distance = (geodesic(start, end).km)
         azimuth = (math.degrees(math.atan2((x2-x1),(y2-y1))))
-        plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        #plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        R = 6371
+        lat1 = math.radians(x1)
+        lon1 = math.radians(y1)
+        lat2 = math.radians(x2)
+        lon2 = math.radians(y2)
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        ddepth = z2 - z1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance_surface = R * c
+        distance1 = math.sqrt(distance_surface ** 2 + ddepth ** 2)
 
-        PSA_5s.loc[o, 'Eu_distance'] = distance
+        PSA_5s.loc[o, 'Haversine_distance'] = distance1
         PSA_5s.loc[o, 'Azimuth'] = azimuth
-        PSA_5s.loc[o, 'Plunge'] = plunge
+        PSA_5s.loc[o, 'Geodesic_distance'] = distance
 
     
-    PSA_7s['Eu_distance'] = 0
+    PSA_7s['Haversine_distance'] = 0
     PSA_7s['Azimuth'] = 0
-    PSA_7s['Plunge'] = 0
+    PSA_7s['Geodesic_distance'] = 0
     for u in range(len(PSA_7s)):
 
         x1,y1,z1 = PSA_7s['Hypocenter_Lat'].iloc[u], PSA_7s['Hypocenter_Lon'].iloc[u], PSA_7s['Hypocenter_Depth'].iloc[u]
@@ -265,16 +313,28 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
         distance = (geodesic(start, end).km)
         azimuth = (math.degrees(math.atan2((x2-x1),(y2-y1))))
-        plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        #plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        R = 6371
+        lat1 = math.radians(x1)
+        lon1 = math.radians(y1)
+        lat2 = math.radians(x2)
+        lon2 = math.radians(y2)
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        ddepth = z2 - z1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance_surface = R * c
+        distance1 = math.sqrt(distance_surface ** 2 + ddepth ** 2)
 
-        PSA_7s.loc[u, 'Eu_distance'] = distance
+        PSA_7s.loc[u, 'Haversine_distance'] = distance1
         PSA_7s.loc[u, 'Azimuth'] = azimuth
-        PSA_7s.loc[u, 'Plunge'] = plunge
+        PSA_7s.loc[u, 'Geodesic_distance'] = distance
 
     
-    PSA_10s['Eu_distance'] = 0
+    PSA_10s['Haversine_distance'] = 0
     PSA_10s['Azimuth'] = 0
-    PSA_10s['Plunge'] = 0
+    PSA_10s['Geodesic_distance'] = 0
     for p in range(len(PSA_10s)):
 
         x1,y1,z1 = PSA_10s['Hypocenter_Lat'].iloc[p], PSA_10s['Hypocenter_Lon'].iloc[p], PSA_10s['Hypocenter_Depth'].iloc[p]
@@ -284,18 +344,30 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
 
         distance = (geodesic(start, end).km)
         azimuth = (math.degrees(math.atan2((x2-x1),(y2-y1))))
-        plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        #plunge = (math.degrees(math.asin((z1)/geodesic(start, end).km)))
+        R = 6371
+        lat1 = math.radians(x1)
+        lon1 = math.radians(y1)
+        lat2 = math.radians(x2)
+        lon2 = math.radians(y2)
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        ddepth = z2 - z1
+        a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+        distance_surface = R * c
+        distance1 = math.sqrt(distance_surface ** 2 + ddepth ** 2)
 
-        PSA_10s.loc[p, 'Eu_distance'] = distance
+        PSA_10s.loc[p, 'Haversine_distance'] = distance1
         PSA_10s.loc[p, 'Azimuth'] = azimuth
-        PSA_10s.loc[p, 'Plunge'] = plunge
+        PSA_10s.loc[p, 'Geodesic_distance'] = distance
 
-    PSA_1s = PSA_1s.drop(PSA_5s.index[16632:]) #number of events
-    PSA_2s = PSA_2s.drop(PSA_5s.index[16632:])
-    PSA_3s = PSA_3s.drop(PSA_5s.index[16632:])
-    PSA_5s = PSA_5s.drop(PSA_5s.index[16632:])
-    PSA_7s = PSA_7s.drop(PSA_5s.index[16632:])
-    PSA_10s = PSA_10s.drop(PSA_5s.index[16632:])
+    PSA_1s = PSA_1s.dropna()
+    PSA_2s = PSA_2s.dropna()
+    PSA_3s = PSA_3s.dropna()
+    PSA_5s = PSA_5s.dropna()
+    PSA_7s = PSA_7s.dropna()
+    PSA_10s = PSA_10s.dropna()
 
     PSA_1s.to_csv(name_Out1)
     PSA_2s.to_csv(name_Out2)
@@ -303,6 +375,7 @@ def SS_psa(path_Stat,path_srf,f_Files,CyberS_sites_temp,name_Out1,name_Out2,name
     PSA_5s.to_csv(name_Out5)
     PSA_7s.to_csv(name_Out7)
     PSA_10s.to_csv(name_Out10)
+
 
 
 if __name__ == "__main__":
