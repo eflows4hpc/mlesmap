@@ -1,3 +1,24 @@
+"""GRID SEARCH: FIND HYPERPARAMETERS
+Copyright (c) . All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY 
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
+OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+"""
+
+
 from sklearn import datasets
 import pandas as pd
 import dislib as ds
@@ -12,10 +33,10 @@ from pycompss.api.api import compss_wait_on, compss_barrier
 from minmax_scaler import MinMaxScaler
 
 def demostracion_grid_search():
-    df = load_txt_file("/gpfs/scratch/bsc21/bsc21395/Dislib/Iceland/Dislib_IcelandMwSplit_9Feat_3s_Train.csv",discard_first_row=True, col_of_index=True,block_size=(133334, 9))
-    dfAll = load_txt_file("/gpfs/scratch/bsc21/bsc21395/Dislib/Iceland/Dislib_IcelandAllData_9Feat_3s.csv",discard_first_row=True, col_of_index=True,block_size=(133334, 9))
-    Data_X_arr_All = dfAll[:, 0:8]
-    Data_Y_arr_All = dfAll[:, 8:9]
+    df = load_txt_file("/path/to/Train.csv",discard_first_row=True, col_of_index=True,block_size=(133334, 9))
+    dfAll = load_txt_file("/path/to/AllDatabase.csv",discard_first_row=True, col_of_index=True,block_size=(133334, 9))
+    Data_X_arr_All = dfAll[:, 0:8] #depending on the number of features
+    Data_Y_arr_All = dfAll[:, 8:9] #position of the target column
     Data_X_arr = df[:, 0:8]
     Data_Y_arr = df[:, 8:9]
     scaler_X = MinMaxScaler(feature_range=(0, 1))
@@ -29,7 +50,7 @@ def demostracion_grid_search():
     x_test = scaler_X.transform(x_ds_test)
     y_train = scaler_y.transform(y_ds_train)
     y_test = scaler_y.transform(y_ds_test)
-    parameters = {'max_depth':(15,20,25,30,35,40)}
+    parameters = {'max_depth':(30,35,40)}  #Modify the parameters 3 by 3, with values from 10 to 50.
 
     rf = RandomForestRegressor(n_estimators=20, try_features='third')
     searcher = GridSearchCV(rf, parameters, cv=5)
