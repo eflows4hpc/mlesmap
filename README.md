@@ -30,6 +30,7 @@ This process results in two different databases. The test database includes all 
 - `Step9_DislibDatabase.py`: In this final step, all columns that would provide essential information for machine learning are retained, sorting them into necessary features and the target variable. The final column should represent the target variable.
 It is advisable to transform the intensity values (PSA) into a base 10 logarithmic scale (log10). It has to be executed once for each intensity measure.
 Example of features and target: Source ID,Site Lat,Site Lon,Magnitude,Hypocenter Lat,Hypocenter Lon,Hypocenter Depth, EuclideanDistance,Azimuth,Intensity Value
+- RandomForest directory: contains the codes to do the training and validation of the data.
 
 ## Comand PyCompss
 ```bash
